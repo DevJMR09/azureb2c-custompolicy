@@ -29,6 +29,8 @@
         <OutputClaim ClaimTypeReferenceId="email" />
         <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub"/>
         <OutputClaim ClaimTypeReferenceId="tenantId" AlwaysUseDefaultValue="true" DefaultValue="{Policy:TenantObjectId}" />
+        <!-- <OutputClaim ClaimTypeReferenceId="extension_LoyaltyNumber" /> -->
+        <OutputClaim ClaimTypeReferenceId="extension_LoyaltyNumber" DefaultValue="Unset" PartnerClaimType="loyaltyNumber"/>
 
       </OutputClaims>
       <SubjectNamingInfo ClaimType="sub" />
