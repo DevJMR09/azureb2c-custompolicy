@@ -23,7 +23,6 @@
   </BuildingBlocks>
 
   <ClaimsProviders>
-
     <ClaimsProvider>
       <DisplayName>Local Account SignIn</DisplayName>
       <TechnicalProfiles>
@@ -67,7 +66,7 @@
           </PersistedClaims>
         </TechnicalProfile>
 
-        <TechnicalProfile>
+        <TechnicalProfile Id="AAD-UserReadUsingObjectId">
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="extension_LoyaltyNumber" />
           </OutputClaims>
@@ -75,8 +74,6 @@
 
       </TechnicalProfiles>
     </ClaimsProvider>
-
-
   </ClaimsProviders>
 
   <UserJourneys>
