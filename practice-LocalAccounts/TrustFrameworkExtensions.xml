@@ -119,6 +119,9 @@
               <Action>SkipThisOrchestrationStep</Action>
             </Precondition>
           </Preconditions>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="ProfileUpdateExchange" TechnicalProfileReferenceId="SelfAsserted-ProfileUpdate" />
+          </ClaimsExchanges>
         </OrchestrationStep>
 
         <OrchestrationStep Order="5" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
