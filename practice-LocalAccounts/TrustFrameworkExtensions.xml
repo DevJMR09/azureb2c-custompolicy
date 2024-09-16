@@ -4,12 +4,12 @@
   xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
   xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" 
   PolicySchemaVersion="0.3.0.0" 
-  TenantId="myhrb2ccourse.onmicrosoft.com" 
+  TenantId="{Settings:Tenant}.onmicrosoft.com" 
   PolicyId="B2C_1A_TrustFrameworkExtensions" 
-  PublicPolicyUri="http://myhrb2ccourse.onmicrosoft.com/B2C_1A_TrustFrameworkExtensions">
+  PublicPolicyUri="http://{Settings:Tenant}.onmicrosoft.com/B2C_1A_TrustFrameworkExtensions">
   
   <BasePolicy>
-    <TenantId>myhrb2ccourse.onmicrosoft.com</TenantId>
+    <TenantId>{Settings:Tenant}.onmicrosoft.com</TenantId>
     <PolicyId>B2C_1A_TrustFrameworkLocalization</PolicyId>
   </BasePolicy>
   <BuildingBlocks>
@@ -28,12 +28,12 @@
       <TechnicalProfiles>
          <TechnicalProfile Id="login-NonInteractive">
           <Metadata>
-            <Item Key="client_id">2351ecc1-86f7-458c-98ef-d29b17a375b7</Item>
-            <Item Key="IdTokenAudience">79a6b5bd-411c-4c56-be3a-48cdd8e7be1a</Item>
+            <Item Key="client_id">{Settings:ProxyIdentityExperienceFrameworkAppId}</Item>
+            <Item Key="IdTokenAudience">{Settings:IdentityExperienceFramework}</Item>
           </Metadata>
           <InputClaims>
-            <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="2351ecc1-86f7-458c-98ef-d29b17a375b7" />
-            <InputClaim ClaimTypeReferenceId="resource_id" PartnerClaimType="resource" DefaultValue="79a6b5bd-411c-4c56-be3a-48cdd8e7be1a" />
+            <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="{Settings:ProxyIdentityExperienceFrameworkAppId}" />
+            <InputClaim ClaimTypeReferenceId="resource_id" PartnerClaimType="resource" DefaultValue="{Settings:IdentityExperienceFramework}" />
           </InputClaims>
         </TechnicalProfile>
       </TechnicalProfiles>
