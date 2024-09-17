@@ -1,55 +1,43 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<TrustFrameworkPolicy 
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" 
-  PolicySchemaVersion="0.3.0.0" 
-  TenantId="{Settings:Tenant}.onmicrosoft.com" 
-  PolicyId="B2C_1A_TrustFrameworkExtensions" 
-  PublicPolicyUri="http://{Settings:Tenant}.onmicrosoft.com/B2C_1A_TrustFrameworkExtensions">
-  
+<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="myhrb2ccourse.onmicrosoft.com" PolicyId="B2C_1A_TrustFrameworkExtensions" PublicPolicyUri="http://myhrb2ccourse.onmicrosoft.com/B2C_1A_TrustFrameworkExtensions" TenantObjectId="fa5a4d10-050b-4ee5-ba46-16e11a52fbc5">
   <BasePolicy>
-    <TenantId>{Settings:Tenant}.onmicrosoft.com</TenantId>
+    <TenantId>myhrb2ccourse.onmicrosoft.com</TenantId>
     <PolicyId>B2C_1A_TrustFrameworkLocalization</PolicyId>
   </BasePolicy>
   <BuildingBlocks>
     <ClaimsSchema>
       <ClaimType Id="extension_LoyaltyNumber">
-      <DataType>string</DataType>
-      <UserHelpText>Your Loyalty from your membership card</UserHelpText>
-      <UserInputType>TextBox</UserInputType>
+        <DataType>string</DataType>
+        <UserHelpText>Your Loyalty from your membership card</UserHelpText>
+        <UserInputType>TextBox</UserInputType>
       </ClaimType>
     </ClaimsSchema>
   </BuildingBlocks>
-
   <ClaimsProviders>
     <ClaimsProvider>
       <DisplayName>Local Account SignIn</DisplayName>
       <TechnicalProfiles>
-         <TechnicalProfile Id="login-NonInteractive">
+        <TechnicalProfile Id="login-NonInteractive">
           <Metadata>
-            <Item Key="client_id">{Settings:ProxyIdentityExperienceFrameworkAppId}</Item>
-            <Item Key="IdTokenAudience">{Settings:IdentityExperienceFramework}</Item>
+            <Item Key="client_id">2351ecc1-86f7-458c-98ef-d29b17a375b7</Item>
+            <Item Key="IdTokenAudience">79a6b5bd-411c-4c56-be3a-48cdd8e7be1a</Item>
           </Metadata>
           <InputClaims>
-            <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="{Settings:ProxyIdentityExperienceFrameworkAppId}" />
-            <InputClaim ClaimTypeReferenceId="resource_id" PartnerClaimType="resource" DefaultValue="{Settings:IdentityExperienceFramework}" />
+            <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="2351ecc1-86f7-458c-98ef-d29b17a375b7" />
+            <InputClaim ClaimTypeReferenceId="resource_id" PartnerClaimType="resource" DefaultValue="79a6b5bd-411c-4c56-be3a-48cdd8e7be1a" />
           </InputClaims>
         </TechnicalProfile>
       </TechnicalProfiles>
     </ClaimsProvider>
-
     <ClaimsProvider>
       <DisplayName>Self Asserted</DisplayName>
       <TechnicalProfiles>
         <TechnicalProfile Id="SelfAsserted-ProfileUpdate">
           <OutputClaims>
-            <OutputClaim ClaimTypeReferenceId="extension_LoyaltyNumber" Required="true"/>
+            <OutputClaim ClaimTypeReferenceId="extension_LoyaltyNumber" Required="true" />
           </OutputClaims>
         </TechnicalProfile>
       </TechnicalProfiles>
     </ClaimsProvider>
-
     <ClaimsProvider>
       <DisplayName>Azure Active Directory</DisplayName>
       <TechnicalProfiles>
@@ -59,27 +47,22 @@
             <Item Key="ClientId">f1dc019d-3929-4e34-9c4a-8ec66805a2f1</Item>
           </Metadata>
         </TechnicalProfile>
-
         <TechnicalProfile Id="AAD-UserWriteProfileUsingObjectId">
           <PersistedClaims>
-            <PersistedClaim ClaimTypeReferenceId="extension_LoyaltyNumber"/>
+            <PersistedClaim ClaimTypeReferenceId="extension_LoyaltyNumber" />
           </PersistedClaims>
         </TechnicalProfile>
-
         <TechnicalProfile Id="AAD-UserReadUsingObjectId">
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="extension_LoyaltyNumber" />
           </OutputClaims>
         </TechnicalProfile>
-
       </TechnicalProfiles>
     </ClaimsProvider>
   </ClaimsProviders>
-
   <UserJourneys>
     <UserJourney Id="SignUpOrSignIn">
       <OrchestrationSteps>
-
         <OrchestrationStep Order="1" Type="CombinedSignInAndSignUp" ContentDefinitionReferenceId="api.signuporsignin">
           <ClaimsProviderSelections>
             <ClaimsProviderSelection ValidationClaimsExchangeId="LocalAccountSigninEmailExchange" />
@@ -88,7 +71,6 @@
             <ClaimsExchange Id="LocalAccountSigninEmailExchange" TechnicalProfileReferenceId="SelfAsserted-LocalAccountSignin-Email" />
           </ClaimsExchanges>
         </OrchestrationStep>
-
         <OrchestrationStep Order="2" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
@@ -100,14 +82,12 @@
             <ClaimsExchange Id="SignUpWithLogonEmailExchange" TechnicalProfileReferenceId="LocalAccountSignUpWithLogonEmail" />
           </ClaimsExchanges>
         </OrchestrationStep>
-
         <!-- This step reads any user attributes that we may not have received when in the token. -->
         <OrchestrationStep Order="3" Type="ClaimsExchange">
           <ClaimsExchanges>
             <ClaimsExchange Id="AADUserReadWithObjectId" TechnicalProfileReferenceId="AAD-UserReadUsingObjectId" />
           </ClaimsExchanges>
         </OrchestrationStep>
-
         <OrchestrationStep Order="4" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
@@ -123,12 +103,9 @@
             <ClaimsExchange Id="ProfileUpdateExchange" TechnicalProfileReferenceId="SelfAsserted-ProfileUpdate" />
           </ClaimsExchanges>
         </OrchestrationStep>
-
         <OrchestrationStep Order="5" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
-
       </OrchestrationSteps>
       <ClientDefinition ReferenceId="DefaultWeb" />
-    </UserJourney>	
-	</UserJourneys>
-
+    </UserJourney>
+  </UserJourneys>
 </TrustFrameworkPolicy>

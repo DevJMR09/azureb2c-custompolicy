@@ -1,19 +1,8 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<TrustFrameworkPolicy
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06"
-  PolicySchemaVersion="0.3.0.0"
-  TenantId="{Settings:Tenant}.onmicrosoft.com"
-  TenantId="myhrb2ccourse.onmicrosoft.com"
-  PolicyId="B2C_1A_signup_signin"
-  PublicPolicyUri="http://{Settings:Tenant}.onmicrosoft.com/B2C_1A_signup_signin">
-
+<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="myhrb2ccourse.onmicrosoft.com" PolicyId="B2C_1A_signup_signin" PublicPolicyUri="http://myhrb2ccourse.onmicrosoft.com/B2C_1A_signup_signin" TenantObjectId="fa5a4d10-050b-4ee5-ba46-16e11a52fbc5">
   <BasePolicy>
-    <TenantId>{Settings:Tenant}.onmicrosoft.com</TenantId>
+    <TenantId>myhrb2ccourse.onmicrosoft.com</TenantId>
     <PolicyId>B2C_1A_TrustFrameworkExtensions</PolicyId>
   </BasePolicy>
-
   <RelyingParty>
     <DefaultUserJourney ReferenceId="SignUpOrSignIn" />
     <TechnicalProfile Id="PolicyProfile">
@@ -24,10 +13,10 @@
         <OutputClaim ClaimTypeReferenceId="givenName" />
         <OutputClaim ClaimTypeReferenceId="surname" />
         <OutputClaim ClaimTypeReferenceId="email" />
-        <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub"/>
+        <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub" />
         <OutputClaim ClaimTypeReferenceId="tenantId" AlwaysUseDefaultValue="true" DefaultValue="{Policy:TenantObjectId}" />
         <!-- <OutputClaim ClaimTypeReferenceId="extension_LoyaltyNumber" /> -->
-        <OutputClaim ClaimTypeReferenceId="extension_LoyaltyNumber" DefaultValue="Unset" PartnerClaimType="loyaltyNumber"/>
+        <OutputClaim ClaimTypeReferenceId="extension_LoyaltyNumber" DefaultValue="Unset" PartnerClaimType="loyaltyNumber" />
       </OutputClaims>
       <SubjectNamingInfo ClaimType="sub" />
     </TechnicalProfile>
